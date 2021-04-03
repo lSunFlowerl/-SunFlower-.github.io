@@ -152,6 +152,137 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-bean的定义方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/03/bean%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/">bean的定义方式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/03/bean%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-04-03T05:58:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="bean的定义方式"><a href="#bean的定义方式" class="headerlink" title="bean的定义方式"></a>bean的定义方式</h2><h3 id="1-编程式"><a href="#1-编程式" class="headerlink" title="1.编程式"></a>1.编程式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AbstractBeanDefinition benDefinition = BeanDefinitionBuilder.genericBeanDefinition.getBeanDefinition();</span><br><span class="line">beanDefinition.setBeanClass(xxx.class);			<span class="comment">//定义bean的类型</span></span><br><span class="line">applicationContext.registerBeanDefinition(beanDefinition) <span class="comment">//将定义的bean注册到applicationContext中</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-声明式"><a href="#2-声明式" class="headerlink" title="2.声明式"></a>2.声明式</h3><pre><code>####     ①. @Component
+</code></pre>
+<h4 id="②-Bean"><a href="#②-Bean" class="headerlink" title="②. @Bean"></a>②. @Bean</h4><h4 id="③-lt-Bean-gt"><a href="#③-lt-Bean-gt" class="headerlink" title="③.&lt;Bean&gt;"></a>③.&lt;Bean&gt;</h4><h2 id="spring中单例bean的含义"><a href="#spring中单例bean的含义" class="headerlink" title="spring中单例bean的含义"></a>spring中单例bean的含义</h2><p>​        spring中单例bean是利用bean的名称拿到bean是唯一的，即不会通过相同的名称获得两个不同的对象。可以通过添加名称不同的同一个类的对象到容器中获得同一个类的多个对象。这与单例模式是不同的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/03/bean%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring-mybatis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/03/spring-mybatis/">spring&amp;mybatis</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/03/spring-mybatis/" class="archive-article-date">
+  	<time datetime="2021-04-03T05:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="mybatis与spring-boot"><a href="#mybatis与spring-boot" class="headerlink" title="mybatis与spring boot"></a>mybatis与spring boot</h1><h2 id="1-spring整合mybatis的基本原理"><a href="#1-spring整合mybatis的基本原理" class="headerlink" title="1.spring整合mybatis的基本原理"></a>1.spring整合mybatis的基本原理</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> calss UserService&#123;</span><br><span class="line">    <span class="meta">@AutoWired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper; <span class="comment">//该userMapper由mybatis框架生成一个动态代理</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="给容器中添加一个SqlSessionFactory-bean-Mybatis需要"><a href="#给容器中添加一个SqlSessionFactory-bean-Mybatis需要" class="headerlink" title="给容器中添加一个SqlSessionFactory bean(Mybatis需要)"></a>给容器中添加一个SqlSessionFactory bean(Mybatis需要)</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> SqlSessionFactory <span class="title">sqlSessionFactory</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">    InputStream inputStream = Resources.getResourceAsStream(<span class="string">&quot;xxx.xml&quot;</span>);</span><br><span class="line">    SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">    <span class="keyword">return</span> sqlSessionFactory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/03/spring-mybatis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
