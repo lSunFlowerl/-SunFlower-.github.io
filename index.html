@@ -172,7 +172,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="1-Spring之IOC"><a href="#1-Spring之IOC" class="headerlink" title="1.Spring之IOC"></a>1.Spring之IOC</h2><p><img src="/2021/04/15/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1618542946(1).jpg" alt="1618542946(1)"></p>
+<p>spring启动过程（XML加载方式）：</p>
+<p>1.创建envirment环境。</p>
+<p>2.进入refresh()方法：</p>
+<p>​        1.prepareRefresh()    //进行一些准备工作，设置一些状态，创建一些需要的集合。</p>
+<p>​        2.创建BeanFactory工厂：</p>
+<p>​                1.创建一个默认的BeanFactory。</p>
+<p>​                2.加载beanDefinitions(从XML文件中进行解析加载) </p>
+<p>​        3.prepareBeanFactory() //设置beanFactory的一些属性信息 </p>
+<p>​        4.postProcessBeanFactory()</p>
+<p>​        //BeanFactoryPostProcessor 对beanDefinition进行修改</p>
+<p>​        //BeanPostProcessor对生成的bean进行修改</p>
+<p>​        5.invokeBeanFactoryPostProcessors()   //应用执行所有的BeanFactoryPostProcessor</p>
+<p>​        6.registerBeanPostProcessors()    //注册所有的BeanPostProcessor    </p>
+<p>​        7.finishBeanFactoryInitialization();//</p>
+<h4 id="BeanFactory与FactoryBean"><a href="#BeanFactory与FactoryBean" class="headerlink" title="BeanFactory与FactoryBean"></a>BeanFactory与FactoryBean</h4><p>这两个类都是用来创建对象的，BeanFactory用来创建常规对象。</p>
+<p>FactoryBean用来创建特殊对象，在创建对象时做一些扩展操作。</p>
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><p>一级缓存没有，想进入二级缓存的话，必须满足下面两个条件：</p>
+<p>1、一级缓存没有</p>
+<p>2、对象正在创建状态</p>
+<h3 id="question"><a href="#question" class="headerlink" title="question"></a>question</h3><h5 id="1-是否可以只有一级缓存"><a href="#1-是否可以只有一级缓存" class="headerlink" title="1.是否可以只有一级缓存"></a>1.是否可以只有一级缓存</h5><p>​       当在多线程环境下时，如果只有一级缓存，初始化完成和未完成的Bean都放在一级缓存中，那么有可能获取到未完成初始化的bean。</p>
+<h5 id="2-如果只有一二级缓存，可以吗？"><a href="#2-如果只有一二级缓存，可以吗？" class="headerlink" title="2.如果只有一二级缓存，可以吗？"></a>2.如果只有一二级缓存，可以吗？</h5><p>​       可以</p>
+<h5 id="3-三级缓存存在的意义"><a href="#3-三级缓存存在的意义" class="headerlink" title="3.三级缓存存在的意义"></a>3.三级缓存存在的意义</h5><p>​        如果创建的是普通类，二级缓存就够了，如果创建的是一个代理类的话，就会出现问题，三级缓存是用来存放经过在初始化完成前后进行了处理后的对象，如果对原对象进行了代理处理，那么需要将生成统一对象的工厂类放入到三级缓存中，由工厂类产生经过前后置处理后的Bean后再放入二级缓存中。如果没有三级缓存的话，将实例化好的对象放入到二级缓存中，此时未完成代理操作，在多线程环境下有可能该对象被提前取走进行初始化，那么最终以及缓存中有可能出现被代理以及未被代理的两个对象，那么最后拿到的对象就不唯一了。</p>
+
       
 
       
