@@ -152,6 +152,578 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-面经" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/25/%E9%9D%A2%E7%BB%8F/">面经</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/25/%E9%9D%A2%E7%BB%8F/" class="archive-article-date">
+  	<time datetime="2021-05-25T07:14:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-操作系统的中断"><a href="#1-操作系统的中断" class="headerlink" title="1 操作系统的中断"></a>1 操作系统的中断</h3><p>中断是指CPU对系统发生的某个事件做出的一种反应，CPU暂停正在执行的程序，保存现场后自动去执行相应的处理程序，处理完该事件后再返回中断处继续执行原来的程序。。中断一般三类，一种是由CPU外部引起的，称为外中断。如I/O中断、时钟中断，一种是来自CPU内部事件或程序执行中引起的中断，例如程序非法操作，地址越界、浮点溢出）称为内中断，或者（异常，陷入），最后一种是在程序中使用了系统调用引起的。而中断处理一般分为中断响应和中断处理两个步骤，中断响应由硬件实施，中断处理主要由软件实施。</p>
+<p>中断(Interruption)，也称外中断，指来自CPU执行指令以外的事件的发生，如设备发出的I/O结束中断，表示设备输入/输出处理已经完成，希望处理机能够向设备发下一个输入 / 输出请求，同时让完成输入/输出后的程序继续运行。时钟中断，表示一个固定的时间片已到，让处理机处理计时、启动定时运行的任务等。这一类中断通常是与当前程序运行无关的事件，即它们与当前处理机运行的程序无关。</p>
+<p>异常（陷入），也叫内中断。是由CPU内部事件所引起的中断，例如进程在运算中发生了上溢或者下溢，有如程序出错，如非法指令，地址越界等。通常把这类中断称为内中断或者陷入。若系统发现有陷入事件，CPU也将暂停正在执行的程序，转去执行该陷入事件的处理程序。</p>
+<p>中断和陷入的主要区别是信号的来源，看是来自CPU外部，还是CPU内部。</p>
+<p>另外还有一种是系统调用。所谓系统调用就是用户在程序中调用操作系统所提供的一些子功能，系统调用可以被看做特殊的公共子程序。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、进行I/0传输以及管理文件等)，都必须通过系统调用方式向操作系统提出服务请求，并由操作系统代为完成。通常，一个操作系统提供的系统调用命令有几十乃至上百条之多。</p>
+<h3 id="2-进程通讯方式"><a href="#2-进程通讯方式" class="headerlink" title="2 进程通讯方式"></a>2 进程通讯方式</h3><p>1.管道pipe：管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
+<p>​    </p>
+<p>2.命名管道FIFO：有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。<br>3.消息队列MessageQueue：消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以  及缓冲区大小受限等缺点。<br>4共享存储SharedMemory：共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号量，配合使用，来实现进程间的同步和通信。<br>5.信号量Semaphore：信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。<br>6.套接字Socket：套解口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同及其间的进程通信。<br>7.信号 ( sinal ) ： 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
+<h3 id="3-TCP、UDP-区别"><a href="#3-TCP、UDP-区别" class="headerlink" title="3 TCP、UDP 区别"></a>3 TCP、UDP 区别</h3><h3 id="4-https"><a href="#4-https" class="headerlink" title="4 https"></a>4 https</h3><h3 id="5-http2-0"><a href="#5-http2-0" class="headerlink" title="5 http2.0"></a>5 http2.0</h3><h3 id="6-数据库特性，事务隔离级别"><a href="#6-数据库特性，事务隔离级别" class="headerlink" title="6 数据库特性，事务隔离级别"></a>6 数据库特性，事务隔离级别</h3><h3 id="7-TCP如何保证可靠传输"><a href="#7-TCP如何保证可靠传输" class="headerlink" title="7 TCP如何保证可靠传输"></a>7 TCP如何保证可靠传输</h3><h3 id="8-计网拥塞控制"><a href="#8-计网拥塞控制" class="headerlink" title="8 计网拥塞控制"></a>8 计网拥塞控制</h3><h3 id="9-四次挥手的状态，Time-wait过多怎么办"><a href="#9-四次挥手的状态，Time-wait过多怎么办" class="headerlink" title="9 四次挥手的状态，Time_wait过多怎么办"></a>9 四次挥手的状态，Time_wait过多怎么办</h3><h3 id="10-内存屏障"><a href="#10-内存屏障" class="headerlink" title="10 内存屏障"></a>10 内存屏障</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/25/%E9%9D%A2%E7%BB%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="archive-article-date">
+  	<time datetime="2021-05-21T03:16:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>MyISAM</th>
+<th>InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主外键</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>事务</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>行表锁</td>
+<td>只支持表锁</td>
+<td>支持行锁和表锁</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>只缓存索引不缓存真实数据</td>
+<td>都缓存</td>
+</tr>
+<tr>
+<td>表空间</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>关注点</td>
+<td>性能</td>
+<td>事务</td>
+</tr>
+<tr>
+<td>默认安装</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/21/%E6%95%B0%E6%8D%AE%E5%BA%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/19/%E7%BA%A2%E9%BB%91%E6%A0%91/">红黑树</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/19/%E7%BA%A2%E9%BB%91%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2021-05-19T08:23:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h1><p>1.每个节点要么是黑色的，要么是红色</p>
+<p>2.根节点是黑色</p>
+<p>3.每个叶节点是黑色的</p>
+<p>4.每个红色节点的两个子节点一定都是黑色。不能有两个红色节点相连</p>
+<p>5.任意一节点到每个叶子节点的路径都包含享用数量的黑结点  —&gt; 如果一个结点存在黑子结点，那么该结点必有两个子节点</p>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><h2 id="1-变色"><a href="#1-变色" class="headerlink" title="1 变色"></a>1 变色</h2><p>结点的颜色从黑变红，或者从红变黑</p>
+<h2 id="2-旋转"><a href="#2-旋转" class="headerlink" title="2 旋转"></a>2 旋转</h2><h3 id="1-左旋"><a href="#1-左旋" class="headerlink" title="1 左旋"></a>1 左旋</h3><p><img src="/2021/05/19/%E7%BA%A2%E9%BB%91%E6%A0%91/%E5%B7%A6%E6%97%8B.jpg" alt="image-20210519165801404"></p>
+<h3 id="2-右旋"><a href="#2-右旋" class="headerlink" title="2 右旋"></a>2 右旋</h3><p> <img src="/2021/05/19/%E7%BA%A2%E9%BB%91%E6%A0%91/%E5%8F%B3%E6%97%8B.jpg" alt="image-20210519170050725"></p>
+<h2 id="3-查找"><a href="#3-查找" class="headerlink" title="3 查找"></a>3 查找</h2><p>与二叉排序树一致</p>
+<h2 id="4-插入"><a href="#4-插入" class="headerlink" title="4 插入"></a>4 插入</h2><p>插入分析：</p>
+<p>1.树是空树，则直接插入，将插入结点染成黑色</p>
+<p>2.插入值已经存在，则更新结点内部值。</p>
+<p>3.插入结点的父节点为黑结点，则直接插入即可，不会影响平衡。</p>
+<p>4.插入结点的父节点是红色</p>
+<p>​                4.1 叔叔结点存在并且为红色节点，祖父结点肯定为黑色。</p>
+<p>​                            操作：</p>
+<p>​                                    1.将父节点，叔叔结点改为红色</p>
+<p>​                                    2.将爷爷结点改为红色</p>
+<p>​                                    3.以爷爷结点为当前节点，进行后续处理</p>
+<p>​                4.2 叔叔结点不存在或者为黑色结点，并且插入结点的父节点是祖父结点的左子节点。</p>
+<p>​                                4.2.1 插入结点是父节点的左子节点（LL双红）</p>
+<p>​                                4.2.2插入结点是父节点的右子节点</p>
+<p>​                            </p>
+<h3 id="1-寻找插入位置"><a href="#1-寻找插入位置" class="headerlink" title="1 寻找插入位置"></a>1 寻找插入位置</h3><p>新建插入结点必须是红色。因为黑色一定会破坏性质，红色有可能不会。</p>
+<h3 id="2-自平衡"><a href="#2-自平衡" class="headerlink" title="2 自平衡"></a>2 自平衡</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/19/%E7%BA%A2%E9%BB%91%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/07/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/07/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2021-05-07T11:22:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>资源分配的基本单位</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>程序执行的基本单位</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/07/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/29/java%E5%9F%BA%E7%A1%80/">java基础</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/29/java%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2021-04-29T02:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id><a href="#" class="headerlink" title></a></h2><h1 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h1><h1 id="1-类相关"><a href="#1-类相关" class="headerlink" title="1 类相关"></a>1 类相关</h1><h3 id="1-1-属性、局部变量"><a href="#1-1-属性、局部变量" class="headerlink" title="1.1 属性、局部变量"></a>1.1 属性、局部变量</h3><p>① 相同点</p>
+<p>​        定义变量格式 ： 数据类型 变量名 = 变量值</p>
+<p>​        先声明，后使用</p>
+<p>​        变量都有其对应的作用域</p>
+<p>② 不同</p>
+<p>​        在类中声明的位置不同</p>
+<p>​                属性：直接定义在一对{}内</p>
+<p>​                局部变量：声明在方法内、方法形参、代码块内、构造器形参、构造器内部变量</p>
+<p>​        权限修饰符的不同</p>
+<p>​                属性：可以在声明属性时，指明权限、使用权限修饰符（public private 缺省 protected）</p>
+<p>​                局部变量：不可以使用权限修饰符</p>
+<p>​        默认初始化值</p>
+<p>​                属性：类的属性，根据其类型都有初始化值。</p>
+<p>​                            （byte、short、int、long）：0</p>
+<p>​                            （float、double）：0.0</p>
+<p>​                            （char） ：0</p>
+<p>​                            （boolean）：false</p>
+<p>​                            （引用类型）：null</p>
+<p>​                局部变量：没有默认初始化值，因此如果局部变量没有赋初值就使用会报错。特别地形参在调用时赋值即可。</p>
+<p>​    在内存中加载的位置：</p>
+<p>​            属性：加载到堆空间中（非static）</p>
+<p>​            局部变量：加载到栈空间中</p>
+<h3 id="1-2-方法"><a href="#1-2-方法" class="headerlink" title="1.2 方法"></a>1.2 方法</h3><p>方法：描述类应该具有的功能 </p>
+<p>① 方法的声明 ： 权限修饰符 返回值类型 方法名（形参列表）{ 方法体 }</p>
+<p>② 关于权限修饰符：public private 缺省 protected 4中权限修饰符 </p>
+<h5 id="可变参"><a href="#可变参" class="headerlink" title="可变参"></a>可变参</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以传0-n个数量可变的参数</span></span><br><span class="line"><span class="comment">//可变形参必须在方法的末尾声明，且最多只能有一个</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String ... strs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面三种调用方式都会定位到该方法</span></span><br><span class="line">method();</span><br><span class="line">method(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>);</span><br><span class="line">method(<span class="keyword">new</span> String[]&#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>可变个数形参的方法与本类中方法名相同，形参类型也相同的数组之间不构成重载，会报错。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面这两种定义方式不构成重载，同时定义编译不通过</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String ... strs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String[] strs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-封装性的体现"><a href="#1-3-封装性的体现" class="headerlink" title="1.3 封装性的体现"></a>1.3 封装性的体现</h3><p>封装性的体现，需要权限修饰符的配合。</p>
+<p>1.将类的属性私有化，并提供一对设置和获取的公共方法。</p>
+<p>2.将类内部的有些方法进行私有化，该方法只供类类内部使用，不对外提供。</p>
+<p>3.单例模式中，将类的构造器也进行了私有化，只能通过工厂类 来获取该类的实例。</p>
+<h3 id="1-4-权限修饰符"><a href="#1-4-权限修饰符" class="headerlink" title="1.4 权限修饰符"></a>1.4 权限修饰符</h3><p>1 java规定的四种权限修饰符，根据权限的大小从小到大依次为： private 缺省 protected public</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>类内部</th>
+<th>同一个包</th>
+<th>不同包的子类</th>
+<th>同一个工程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>private</td>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+</tr>
+<tr>
+<td>缺省</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+</tr>
+<tr>
+<td>public</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+</tr>
+</tbody></table>
+<p>2 这四种权限修饰符可以修饰类以及类的内部结构：属性、方法、构造器、内部类</p>
+<p>​            ***修饰类：只能用public 或缺省</p>
+<h3 id="1-5-构造器"><a href="#1-5-构造器" class="headerlink" title="1.5 构造器"></a>1.5 构造器</h3><p>1.如果没有显定义构造器，系统默认提供一个空参构造器(权限和类的权限一致)</p>
+<p>2 多个构造器必须构成重载</p>
+<p>3 一旦定义了构造器，系统不再提供默认的空参构造器</p>
+<h3 id="1-6-this-关键字"><a href="#1-6-this-关键字" class="headerlink" title="1.6 this 关键字"></a>1.6 this 关键字</h3><p>1.可以通过this调用当前对象的属性</p>
+<p>2.可以通过this调用当前对象的方法</p>
+<p>3.可以通过this调用当前对象的其他构造器（this(形参列表)）</p>
+<p>​    this调其他构造器时，必须放在首行。</p>
+<h3 id="1-7-import"><a href="#1-7-import" class="headerlink" title="1.7 import"></a>1.7 import</h3><p>1.如果导入的类名一样，但包不一样，并且想同时使用两个类，其中一个类正常导入，另外一个类必须用全类名使用。</p>
+<p>2.使用子包下的类，也要进行导入。</p>
+<p>3.import static 表示导入类中的静态结构（属性，方法）。使用的时候不用带类名。</p>
+<h3 id="1-8-方法重写"><a href="#1-8-方法重写" class="headerlink" title="1.8 方法重写"></a>1.8 方法重写</h3><p>1.子类重写的方法的权限修饰符不小于父类被重写的方法的权限修饰符</p>
+<p>2.子类不能重写父类的private方法</p>
+<p>3.如果父类的返回值类型是空，则子类只能返回空。如果父类的返回值是A类，则子类可以返回A类或A的子类。</p>
+<p>4.如果父类返回的是基本类型，则子类必须返回相同的基本类型。</p>
+<p>5.子类重写的方法抛出的异常类型不大于父类被重写方法抛出的异常类型</p>
+<h3 id="1-9-多态"><a href="#1-9-多态" class="headerlink" title="1.9 多态"></a>1.9 多态</h3><p>1.多态调动方法时，调子类重写的方法，但是调属性时，调父类的属性。</p>
+<h3 id="1-10-反射"><a href="#1-10-反射" class="headerlink" title="1.10 反射"></a>1.10 反射</h3><p>获取Class实例的方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用运行时类的属性</span></span><br><span class="line">Class clazz = A.class;</span><br><span class="line"><span class="comment">//调用运行时类的对象</span></span><br><span class="line">A a = <span class="keyword">new</span> A();</span><br><span class="line">Class clazz = a.getClass();</span><br><span class="line"><span class="comment">//调用Class的静态方法</span></span><br><span class="line">Class clazz = Class.forName(<span class="string">&quot;全类名&quot;</span>);</span><br><span class="line"><span class="comment">//使用类的加载器</span></span><br><span class="line">ClassLoacer classLoader = 当前类.class.getClassLoader();</span><br><span class="line">Class clazz  = classLoader.loadClass(<span class="string">&quot;全类名&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>创建运行时类的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = A.class;</span><br><span class="line"><span class="comment">//newInstance 方法创建对应的运行时类对象，内部调用了运行时类的空参构造器</span></span><br><span class="line"><span class="comment">//此方法能正常调用需要满足：1.运行时类必须提供空参构造器。   2.空参构造器的访问权限必须的够。</span></span><br><span class="line">A a = (A)clazz.newInstance();</span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-基本类"><a href="#2-基本类" class="headerlink" title="2 基本类"></a>2 基本类</h1><h2 id="1-Object"><a href="#1-Object" class="headerlink" title="1 Object"></a>1 Object</h2><p>  属性： 无</p>
+<p>  方法： equals toString getClass hashCode clone finalize wait notify notifyAll </p>
+<h2 id="2-Integer"><a href="#2-Integer" class="headerlink" title="2 Integer"></a>2 Integer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">Integer j = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">System.out.print(i == j);     <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">Integer m = <span class="number">1</span>;</span><br><span class="line">Integer n = <span class="number">1</span></span><br><span class="line">System.out.print(m == n);		<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">Integer x = <span class="number">128</span>;</span><br><span class="line">Integer y = <span class="number">128</span>;</span><br><span class="line">System.out.print(x == y);		<span class="comment">//false    Integer中的静态内部类IntegerCache，缓存从-128-127，目的：提高效率，因为这部分树使用频率高</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="对象在内存的存储"><a href="#对象在内存的存储" class="headerlink" title="** 对象在内存的存储"></a>** 对象在内存的存储</h2><p><img src="/2021/04/29/java%E5%9F%BA%E7%A1%80/%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.jpg" alt="image-20210507163141373"></p>
+<p>markword 占8个字节 </p>
+<p>class pointer 类指针占 4字节</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Object();</span><br><span class="line"><span class="comment">//这个对象在内存中，markword占8字节，class pointer 占4字节，加起来12字节，不能被8整除，需要再补4字节，也就是说一共占14字节</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-JVM内存结构"><a href="#2-JVM内存结构" class="headerlink" title="2  JVM内存结构"></a>2  JVM内存结构</h1><p><img src="/2021/04/29/java%E5%9F%BA%E7%A1%80/jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.jpg" alt="jvm内存结构"></p>
+<p>虚拟机栈：局部变量</p>
+<p>堆：new出来的结构</p>
+<p>方法区：类的加载信息、常量池、静态域</p>
+<h1 id="3-多线程"><a href="#3-多线程" class="headerlink" title="3 多线程"></a>3 多线程</h1><h2 id="线程声明周期"><a href="#线程声明周期" class="headerlink" title="线程声明周期"></a>线程声明周期</h2><p>​    新建  —–&gt;   就绪   —–&gt;   运行 —–&gt;   （阻塞  —–&gt; 就绪）  —–&gt; 运行 —–&gt;  死亡</p>
+<p>​    引起线程死亡的情况：执行完run() 调用线程的stop() 出现异常或错误且没有处理</p>
+<p>​    引起线程阻塞的情况：sleep() join() 等待同步锁 wait() suspend()</p>
+<p>​    从阻塞到就绪状态的情况：join()结束 sleep()时间到 获得了同步锁 notify()/notifyAll() resume()</p>
+<h3 id="Callable创建线程"><a href="#Callable创建线程" class="headerlink" title="Callable创建线程"></a>Callable创建线程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Callable</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        dosth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> A();</span><br><span class="line">        FutureTask ft = <span class="keyword">new</span> FutureTask(a);</span><br><span class="line">        <span class="keyword">new</span> Thread(ft).start();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">        	T x = ft.get();    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            print(e);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p> 线程池七大参数：核心线程数、最大线程数、keepalivetime、timeunit、blockqueue、拒绝策略、ThreadFactory</p>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>1.HashMap与HashTable</p>
+<p>HashMap可以存储null的键和值，HashTable不可以。HashMap线程不安全。</p>
+<p>2.LinkedHashMap</p>
+<p>当频繁遍历时，考虑选用LinkedHashMap</p>
+<p>3.TreeMap</p>
+<p>保证按照添加的Key进行排序，实现排序遍历。底层使用红黑树。</p>
+<h4 id="HashMap的底层实现原理"><a href="#HashMap的底层实现原理" class="headerlink" title="HashMap的底层实现原理"></a>HashMap的底层实现原理</h4><p>1.8版本HashMap的put流程</p>
+<ol>
+<li>new HashMap()后，并未创建出底层数组，只是对loadfactory赋了初值。</li>
+<li>如果第一次执行put方法，则进行扩容。</li>
+</ol>
+<p>​    扩容流程：</p>
+<p>​        新的容量为旧表容量的2倍，如果超过最大值，则只修改扩容阈值，并不进行实际扩容。</p>
+<p>​        申请新的数组，容量为旧表的2倍。</p>
+<p>​        遍历旧表，将旧表元素转移到新表，并将旧表对应元素置空，由于地址计算采用公式（表长 - 1）&amp; hash 并且表长为2的次方，则(新表长 - 1)&amp; hash的计算结果只有两种可能，新增一位高位的hash值是0和1两种情况，如果是0则和旧地址一样，如果是1则后移旧表长个单位。</p>
+<p>​        遍历到链表结点时，判断链上每一元素的hash值与旧表长与运算后的值，将0和1两种情况分别插入到不同的两个链表中，最后将两个链表分别放到和旧地址一致的位置和后移旧表长个位置。如果当前节点为红黑树则进行红黑树的转移操作。</p>
+<p>​        返回新表</p>
+<p>​    3.不是第一次执行put，则判断要插入位置是否有元素，如果没有元素，则直接插入到要插的位置，否则比较插入位置的key与要插的key是否相同如果相同，则中断遍历，直接进行值替换操作。否则开始遍历，如果当前位置元素为红黑树，则进行红黑树的插入操作，否则开始遍历链表，依次比较key，如果相同则break进行值替换，否则一直遍历到表尾插入新节点，插入后链表长大于8则进行红黑树转换。</p>
+<p>​    4.插入完成后，判断表中元素数量是否超过扩容阈值，如果超过，则进行扩容。</p>
+<h6 id="扩容源码"><a href="#扩容源码" class="headerlink" title="扩容源码"></a>扩容源码</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">    	<span class="comment">//声明扩容前旧表</span></span><br><span class="line">        Node&lt;K,V&gt;[] oldTab = table;</span><br><span class="line">    	<span class="comment">//旧表的容量</span></span><br><span class="line">        <span class="keyword">int</span> oldCap = (oldTab == <span class="keyword">null</span>) ? <span class="number">0</span> : oldTab.length; 	 </span><br><span class="line">        <span class="comment">//旧表扩容阈值</span></span><br><span class="line">    	<span class="keyword">int</span> oldThr = threshold;</span><br><span class="line">        <span class="keyword">int</span> newCap, newThr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (oldCap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">//如果表容量已经大于等于最大值，只修改阈值，不作扩容处理</span></span><br><span class="line">            <span class="keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</span><br><span class="line">                threshold = Integer.MAX_VALUE;</span><br><span class="line">                <span class="keyword">return</span> oldTab;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//对新容量进行赋值，新容量小于等于最大容量，并且旧表容量大于初始容量，对阈值进行赋值</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                     oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">                newThr = oldThr &lt;&lt; <span class="number">1</span>; <span class="comment">// double threshold</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (oldThr &gt; <span class="number">0</span>) <span class="comment">// initial capacity was placed in threshold</span></span><br><span class="line">            newCap = oldThr;</span><br><span class="line">    	<span class="comment">//表未创建，第一次放元素</span></span><br><span class="line">        <span class="keyword">else</span> &#123;               <span class="comment">// zero initial threshold signifies using defaults</span></span><br><span class="line">            newCap = DEFAULT_INITIAL_CAPACITY;</span><br><span class="line">            newThr = (<span class="keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="comment">//新的扩容阈值未计算，则重新计算</span></span><br><span class="line">        <span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">float</span> ft = (<span class="keyword">float</span>)newCap * loadFactor;</span><br><span class="line">            newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="keyword">float</span>)MAXIMUM_CAPACITY ?</span><br><span class="line">                      (<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</span><br><span class="line">        &#125;</span><br><span class="line">        threshold = newThr;</span><br><span class="line">        <span class="meta">@SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span></span><br><span class="line">    	<span class="comment">//创建新表</span></span><br><span class="line">        Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node[newCap];</span><br><span class="line">        table = newTab;</span><br><span class="line">    	<span class="comment">//将旧表元素重新转移到新表</span></span><br><span class="line">        <span class="keyword">if</span> (oldTab != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//遍历旧表</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</span><br><span class="line">                Node&lt;K,V&gt; e;</span><br><span class="line">                <span class="comment">//当前位置有元素</span></span><br><span class="line">                <span class="keyword">if</span> ((e = oldTab[j]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">//旧表元素置空（GC？）</span></span><br><span class="line">                    oldTab[j] = <span class="keyword">null</span>;</span><br><span class="line">                    <span class="comment">//如果当前位置只有一个元素，没有链表，则直接将当前元素转移到新表的新位置。</span></span><br><span class="line">                    <span class="keyword">if</span> (e.next == <span class="keyword">null</span>)</span><br><span class="line">                        newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</span><br><span class="line">                    <span class="comment">//如果当前位置是红黑树，则进行红黑树的转移操作。</span></span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                        ((TreeNode&lt;K,V&gt;)e).split(<span class="keyword">this</span>, newTab, j, oldCap);</span><br><span class="line">                    <span class="comment">//当前位置是链表</span></span><br><span class="line">                    <span class="keyword">else</span> &#123; <span class="comment">// preserve order</span></span><br><span class="line">                        <span class="comment">//由于扩容是2的整数倍，则旧表上计算出相同位置元素在新表上的位置要么是原位置，要么为旧位置+旧表长，</span></span><br><span class="line">                        <span class="comment">//所以这里声明了两个新的链表头和尾</span></span><br><span class="line">                        Node&lt;K,V&gt; loHead = <span class="keyword">null</span>, loTail = <span class="keyword">null</span>;</span><br><span class="line">                        Node&lt;K,V&gt; hiHead = <span class="keyword">null</span>, hiTail = <span class="keyword">null</span>;</span><br><span class="line">                        Node&lt;K,V&gt; next;</span><br><span class="line">                        <span class="keyword">do</span> &#123;</span><br><span class="line">                            next = e.next;</span><br><span class="line">                            <span class="comment">//判断高一位是否为1，若为1则新位置要后移oldCap个位置，否则还为原位置</span></span><br><span class="line">                            <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">                                <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</span><br><span class="line">                                    loHead = e;</span><br><span class="line">                                <span class="keyword">else</span></span><br><span class="line">                                    loTail.next = e;</span><br><span class="line">                                loTail = e;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span> &#123;</span><br><span class="line">                                <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</span><br><span class="line">                                    hiHead = e;</span><br><span class="line">                                <span class="keyword">else</span></span><br><span class="line">                                    hiTail.next = e;</span><br><span class="line">                                hiTail = e;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</span><br><span class="line">                        <span class="comment">//若两个表有不空的，则插入到新位置。</span></span><br><span class="line">                        <span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            loTail.next = <span class="keyword">null</span>;</span><br><span class="line">                            newTab[j] = loHead;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            hiTail.next = <span class="keyword">null</span>;</span><br><span class="line">                            newTab[j + oldCap] = hiHead;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newTab;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="put方法"><a href="#put方法" class="headerlink" title="put方法"></a>put方法</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,</span></span></span><br><span class="line"><span class="function"><span class="params">               <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">    <span class="comment">//表未创建，则进行初次扩容</span></span><br><span class="line">    <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">        n = (tab = resize()).length;</span><br><span class="line">    <span class="comment">//若果要插入的位置为null，则直接进行插入操作</span></span><br><span class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)</span><br><span class="line">        tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;K,V&gt; e; K k;</span><br><span class="line">        <span class="comment">//如果插入的键已经存在，则进行值替换</span></span><br><span class="line">        <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">            ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            e = p;</span><br><span class="line">        <span class="comment">//如果当前位置为红黑树，则进行红黑树的插入操作</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);</span><br><span class="line">        <span class="comment">//当前位置为链表</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                <span class="comment">//如果已经遍历到表尾，则新建结点插入到表尾，插入后如果大于红黑树转换阈值，则将链表转化为红黑树</span></span><br><span class="line">                <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    p.next = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">                    <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                        treeifyBin(tab, hash);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//如果当前元素的key与要插入的key一致，则需要进行替换</span></span><br><span class="line">                <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                    ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                p = e;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果key已经存在，则进行值替换</span></span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</span><br><span class="line">                e.value = value;</span><br><span class="line">            afterNodeAccess(e);</span><br><span class="line">            <span class="keyword">return</span> oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ++modCount;</span><br><span class="line">    <span class="comment">//如果插入后，新表长大于扩容阈值，则进行扩容</span></span><br><span class="line">    <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">        resize();</span><br><span class="line">    afterNodeInsertion(evict);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h6 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h6><p>​    1.默认初始容量 16</p>
+<p>​    2.默认加载因子 0.75</p>
+<p>​    3.</p>
+<h6 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h6><p>​    当size大于等于阈值，并且要放的位置不空时进行扩容</p>
+<p> 1.hash地址计算  （表长 - 1）&amp;  hash值</p>
+<p> 2.扩容每次扩为原来的2倍，默认容量初值为16，若指定容量，则为不小于指定容量的2的次方数。</p>
+<p>3.当数组某一索引位置上的元素以链表形式存在的数据个数大于8，且数组长大于64，则此索引位置上的所有数据改为红黑树存储。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/29/java%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mybatis源码阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -562,81 +1134,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/15/hello-world/" class="archive-article-date">
-  	<time datetime="2021-03-15T11:46:41.029Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/15/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
